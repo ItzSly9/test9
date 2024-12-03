@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BronxRP.com</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos del slider */
+        .slider-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 0;
+            background: transparent;
+        }
+
+        .slider {
+            width: 80%;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            min-width: 100%;
+        }
+
+        .slider-item img {
+    width: 100%; /* Mantén el ancho al 100% para que las imágenes ocupen todo el contenedor */
+    height: 500px; /* Aumenta la altura de las imágenes */
+    object-fit: cover; /* Ajusta la imagen para que llene el espacio sin distorsionarse */
+    display: block;
+}
+
+
+        /* Controles */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="header-content">
+        <a href="#" class="logo">
+            <img src="img/1.png" alt="BronxRP Logo">
+            <span>Bronx Roleplay</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="button">Inicio</a></li>
+                <li><a href="https://normativas.bronxrp.com/" class="button">Normativas Generales</a></li>
+            </ul>
+        </nav>
+    </div>         
+    </header>
+    <section class="hero" id="inicio">
+        <h1 id="dynamic-text"></h1>
+        <p>Sumérgete en una experiencia única de roleplay donde la realidad y la ficción se fusionan para crear historias inolvidables. Únete a nuestra comunidad y forma parte de esta nueva era del gaming.</p>
+        <div class="button-container">
+            <a href="https://servers.fivem.net/servers/detail/77jg4b" class="btn">Ingresar al Servidor</a>
+            <a href="https://discord.gg/J6XrSMj5" class="btn">Discord</a>
+        </div>
+    </section>
+    
+    <script>
+        const textElement = document.getElementById("dynamic-text");
+        const texts = ["Bronx.", "Somos Comunidad." , "Somos roleplay."];
+        let i = 0; // Índice del texto actual
+        let j = 0; // Índice de caracteres
+        let isDeleting = false;
+    
+        function typeEffect() {
+            const currentText = texts[i];
+            const displayedText = isDeleting 
+                ? currentText.slice(0, j--) 
+                : currentText.slice(0, j++);
+    
+            textElement.textContent = displayedText;
+    
+            if (!isDeleting && j === currentText.length) {
+                // Pausa al completar el texto
+                isDeleting = true;
+                setTimeout(typeEffect, 1000);
+            } else if (isDeleting && j === 0) {
+                // Cambiar al siguiente texto
+                isDeleting = false;
+                i = (i + 1) % texts.length; // Reinicia el índice al final del array
+                setTimeout(typeEffect, 500);
+            } else {
+                // Continuar escribiendo o borrando
+                setTimeout(typeEffect, isDeleting ? 50 : 100);
+            }
+        }
+    
+        typeEffect();
+    </script>
+    
+    <style>
+        .hero {
+            text-align: center;
+            padding: 50px;
+        }
+    
+        #dynamic-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    
+        .button-container .btn {
+            text-decoration: none;
+            color: rgb(20, 20, 20);
+            background-color: #007bff;
+            padding: 15px 25px;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .button-container .btn:hover {
+            background-color: #0056b3;
+        }
+        <style>
+    /* Estilos generales */
+    .stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 50px 0;
+        background-color: #f4f4f4;
+    }
+
+    .stat-item {
+        margin: 25px 0;
+        opacity: 0; /* Comienza invisible */
+        animation: fadeIn 1s forwards; /* Aparece con animación */
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .stat-label {
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    /* Animación de aparición */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px); /* Comienza desplazado hacia abajo */
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0); /* Se posiciona en su lugar original */
+        }
+    }
+
+    /* Aplicar diferentes retrasos a cada estadística */
+    .stat-item:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .stat-item:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .stat-item:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+</style>
+
+    <!-- Slider de imágenes -->
+    <h1 class="section-divider">Galería de BronxRP</h1>
+    <section class="slider-section">
+        <div class="slider">
+            <div class="slider-track">
+                <div class="slider-item">
+                    <img src="https://cdn.discordapp.com/attachments/1313306955573629028/1313338380204904498/Sin_titulo-3.png?ex=674fc52e&is=674e73ae&hm=3a6d1fb4170a4972eef5822594da30f8b8f79afcfda994b9400e3e4c7a5153fc&" alt="Imagen 1 de BronxRP">
+                </div>
+                <div class="slider-item">
+                    <img src="https://cdn.discordapp.com/attachments/1313306955573629028/1313338685973991434/galeria2.png?ex=674fc577&is=674e73f7&hm=f1b0a39b4195769e0ff890ed76293304600c0230423bc2d09cd5a61c36ca8c0b&" alt="Imagen 2 de BronxRP">
+                </div>
+                <div class="slider-item">
+                    <img src="https://cdn.discordapp.com/attachments/1313306955573629028/1313339001784238221/galeria3.png?ex=674fc5c2&is=674e7442&hm=9d958a7777e9425e585c1c8f868ac313e2d266c641713b0d790e997a2acff4f8&" alt="Imagen 3 de BronxRP">
+                </div>
+                <div class="slider-item">
+                    <img src="https://cdn.discordapp.com/attachments/1313306955573629028/1313339342332231701/galeria4.png?ex=674fc613&is=674e7493&hm=857de2a242c7122b68b2549aac69f4cfb8601847934cab5eed2b41e19eb07215&" alt="Imagen 4 de BronxRP">
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button id="prev-btn">&lt;</button>
+                <button id="next-btn">&gt;</button>
+            </div>
+        </div>
+    </section>
+    <h1 class="section-divider">Estadísticas</h1>
+    <section class="stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h2>124</h2>
+                <p>Jugadores Online</p>
+            </div>
+            <div class="stat-item">
+                <h2>58</h2>
+                <p>Donaciones Realizadas</p>
+            </div>
+            <div class="stat-item">
+                <h2>12</h2>
+                <p>Sorteos Hechos</p>
+            </div>
+        </div>
+    </section>
+
+    <h1 class="section-divider">Explora Nuestras Características</h1>
+    <section class="features" id="caracteristicas">
+        <div class="feature">
+            <h3>Sistema Económico</h3>
+            <p>Experimenta una economía dinámica y realista con múltiples oportunidades de negocio, empleos diversos y un mercado fluctuante que responde a las acciones de los jugadores.</p>
+        </div>
+        <div class="feature">
+            <h3>Sistema de Tuning</h3>
+            <p>Personaliza tus vehículos hasta el último detalle con nuestro avanzado sistema de tuning. Incluye nitro, mejoras de rendimiento y personalización visual completa.</p>
+        </div>
+        <div class="feature">
+            <h3>Personalización Total</h3>
+            <p>Crea tu identidad única con cientos de opciones de personalización, desde ropa y accesorios hasta propiedades y negocios personalizables.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 BronxRP. Hecho con amor por <a href="https://neeks.ar" target="_blank">Neeks</a> & <a href="https://snuff.com" target="_blank">snuff</a></p>
+    </footer>
+    
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider-item');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+
+        function changeSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+
+            currentIndex = index;
+            const sliderTrack = document.querySelector('.slider-track');
+            sliderTrack.style.transform = `translateX(-${100 * currentIndex}%)`;
+        }
+
+        prevButton.addEventListener('click', () => changeSlide(currentIndex - 1));
+        nextButton.addEventListener('click', () => changeSlide(currentIndex + 1));
+
+        setInterval(() => changeSlide(currentIndex + 1), 5000); // Cambiar cada 5 segundos
+    </script>
+</body>
+</html>
